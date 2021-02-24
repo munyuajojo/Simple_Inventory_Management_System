@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+
+{% block pagetitle%}Home - Inventory Management system{% endblock %}
+
+{% block csslinks%} 
+<link rel="stylesheet" href="/static/main.css">
+<link rel= "stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{%endblock%}
+
+{% include '/includes/navbar.html' %}
+<div class="container">
+    {% block content%} 
+<div class="grid">
+    <h1>Home page</h1>
+
+
+</div>
+
+{% endblock%}
+  </div>
+
+
+{% block jslinks%} {% endblock %}
