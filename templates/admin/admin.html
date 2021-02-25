@@ -2,160 +2,297 @@
 
 {% block pagetitle%}Home - Inventory Management system{% endblock %}
 
-{% block csslinks%} 
+{% block csslinks%}
 <link rel="stylesheet" href="/static/main.css">
-<link rel= "stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 {%endblock%}
 
 {% include '/includes/navbar.html' %}
 
-    {% block content%} 
-    <div class="container mt-5">
-        <div class="row">
-            <div class="row">
-                <div class="col-4">
-                  <div class="list-group" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="Dashboard">Dashboard</a>
-                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="Inventory">Inventory</a>
-                    <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="stock">Stock </a>
-                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="sales">Sales</a>
+{% block content%}
+<!-- Start of div container -->
+<div class="container mt-5">
+  <div class="row">
+    <div class="row">
+      <div class="col-2">
+        <div class="list-group" id="list-tab" role="tablist">
+          <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list"
+            href="#list-home" role="tab" aria-controls="Dashboard"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+          <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list"
+            href="#list-profile" role="tab" aria-controls="Inventory"><i class="fas fa-warehouse"></i>Inventory</a>
+          <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list"
+            href="#list-messages" role="tab" aria-controls="stock">Stock </a>
+          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list"
+            href="#list-settings" role="tab" aria-controls="sales">Sales</a>
+            <a class="list-group-item list-group-item-action" id="list-accounts-list" data-bs-toggle="list" 
+            href="#list-accounts" role="tab" aria-controls="accounts"><i class="fas fa-user-alt"></i>  Accounts</a>
+        </div>
+      </div>
+      <div class="col-10">
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Inventory</div>
+                    <div class="card-body">
+
+                      <p class="card-text">500</p>
+                    </div>
                   </div>
                 </div>
-                <div class="col-8">
-                  <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                        <div class="container">
-                            <div class="row" > 
-                                    <div class="col">
-                                        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                                            <div class="card-header">Inventory</div>
-                                            <div class="card-body">
-                                        
-                                              <p class="card-text">500</p>
-                                            </div>
-                                          </div>
-                                    </div>
-                                    <div class="col">
-                            
-                                        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                                            <div class="card-header">Category</div>
-                                            <div class="card-body">
+                <div class="col">
 
-                                              <p class="card-text">5</p>
-                                            </div>
-                                          </div>
-                                    </div>
-                                    <div class="col">
-                                        
-                                        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                                            <div class="card-header">Users</div>
-                                            <div class="card-body">
-                                              <p class="card-text">4</p>
-                                            </div>
-                                          </div>
-                                    </div>
-                            
-                            </div>
-                            
-                            <div class ="row">
-                        <div class="col">
-                            <canvas id="bar-chart" width="150" height="150"></canvas>
-                        </div>
-                        <div class="col">
-                            <canvas id="pie-chart" width="150" height="150"></canvas>
-                        </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">Inventory
+                  <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Category</div>
+                    <div class="card-body">
 
-                        <div class="container">
-                            <div class="row">
-                                    <div class="col d-flex justify-content-center">
-                                        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-md btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Add Inventory
-        </button>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog ">
-            <div class="modal-content ">
-                <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                form
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                
-                </div>
-            </div>
-            </div>
-  </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                                <div class="col"></div>
-                                Table
-                            </div>
-                        </div>
+                      <p class="card-text">5</p>
                     </div>
-                    <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">Stock</div>
-                    <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">Sales</div>
+                  </div>
+                </div>
+                <div class="col">
+
+                  <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Users</div>
+                    <div class="card-body">
+                      <p class="card-text">4</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <canvas id="bar-chart" width="150" height="150"></canvas>
+                </div>
+                <div class="col">
+                  <canvas id="pie-chart" width="150" height="150"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+
+            <div class="container">
+              <div class="row">
+                <div class="col d-flex justify-content-center">
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-md btn-warning" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop">
+                    Add Inventory
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered ">
+                      <div class="modal-content ">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="" method="POST"> <!--Start of form-->
+                            <div class="form-floating mb-3"> <!--Start of Email input-->
+                              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                              <label for="floatingInput">Email address</label>
+                            </div><!--End of Email input-->
+                            
+                            <div class="form-group mt-3"> <!--Start of select category-->
+                                  <label for="">Select Category</label>
+                                  <select name="category" id="" required class="form-control">
+                                    <option></option>
+                                    <option selected>Select Category</option>
+                                    <option value="product">Product</option>
+                                    <option value="service">Service</option>
+                                  </select> <!--End of Select Category-->
+                            </div><!--End of Select Category-->
+    
+                            <div class="form-group mt-3"> <!--Start of Buying Price form group-->
+                              <label for="">Buying Price</label>
+                              <input class="form control" type="text" name="bp" id="" required>
+                            </div> <!--End of Buying Price form group-->
+                                  
+                            <div class="form-group mt-3"> <!--Start of Selling Price form group-->
+                              <label for="">Selling Price</label>
+                              <input class="form control" type="text" name="sp" id="" required>
+                            </div> <!--End of Selling Price form group-->
+    
+                            <div class="from-group mt-3 d-flex justify-content-end"> <!--Start of Buttom form group-->
+                              <button class="btn btn-success" type="submit">Submit</button>
+                            </div> <!--End of Buttom form group-->   
+    
+                          </form> <!--End of form-->
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col mt-4">
+                  <!-- Table -->
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              
+
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"> <!--Start of Stock Div-->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div><!--End of Stock Div-->
+          <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><!--Start of Sales Div-->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div> <!--End of Sales Div-->
+
+          <div class="tab-pane fade" id="list-accounts" role="tabpanel" aria-labelledby="list-accounts-list">Accounts</div>
+        
         </div>
-          
-        </div>
-       </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!--End of Div Class ="Container"-->
+</div>
 
 
 {% endblock%}
-  </div>
+</div>
 
 
 {% block jslinks%}
 <script>// Bar chart
-    new Chart(document.getElementById("bar-chart"), {
-        type: 'bar',
-        data: {
-          labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-          datasets: [
-            {
-              label: "Population (millions)",
-              backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-              data: [2478,5267,734,784,433]
-            }
-          ]
-        },
-        options: {
-          legend: { display: false },
-          title: {
-            display: true,
-            text: 'Predicted world population (millions) in 2050'
-          }
+  new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+          data: [2478, 5267, 734, 784, 433]
         }
-    });</script> 
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+  });</script>
 
-    <script>new Chart(document.getElementById("pie-chart"), {
-        type: 'pie',
-        data: {
-          labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-          datasets: [{
-            label: "Population (millions)",
-            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-            data: [2478,5267,734,784,433]
-          }]
-        },
-        options: {
-          title: {
-            display: true,
-            text: 'Predicted world population (millions) in 2050'
-          }
-        }
-    });</script> 
- {% endblock %}
+<script>new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+        data: [2478, 5267, 734, 784, 433]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+  });</script>
+{% endblock %}
