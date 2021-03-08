@@ -17,7 +17,29 @@
 </head>
 <body>
 
-{% block content%} {% endblock%}
+    {% include '/includes/navbar.html'%}
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-3 mt-4">
+                    {% include '/includes/sidenav.html'%}
+                </div>
+
+                <div class="col-9 mt-4"> <!--Start Col2-->
+                    {% block content%} {% endblock%}
+                </div> <!--End Col 2-->
+            </div> <!--End Row-->
+
+            
+        </div> <!--End Container-->
+        
+    
+    
+
+
+
+   
 
 
 

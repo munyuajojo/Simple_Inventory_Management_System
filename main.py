@@ -1,5 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+#from sqlalchemy import create_engine
+
+#e = create_engine("postgresql://postgres:jojo@localhost/inventories", pool_recycle=3600)
+#c = e.connect()
 
 #Configs
 from configs.configurations import Development, Testing, Production
@@ -7,6 +11,7 @@ from configs.configurations import Development, Testing, Production
 app = Flask(__name__)
 app.config.from_object(Development)
 db = SQLAlchemy(app)
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:jojo@localhost/inventories"
 
 
 #Models
@@ -17,9 +22,9 @@ from models.sales import Sales
 #Services
 from services.inventory import InventoryService
 
-#@app.before_first_request
-#def create():
-    #db.create_all()
+@app.before_first_request
+def create():
+   db.create_all()
     
 
 
@@ -27,12 +32,37 @@ from services.inventory import InventoryService
 def index():
     return render_template("/landing/index.html")
 
-@app.route('/admin')
-def admin():
+@app.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    if request.method == 'POST':
+        InventoryService.add_inventory()
+        
     return InventoryService.inventories()
+
+
+@app.route('/inventories', methods=['GET', 'POST'])
+def inventories():
+    return render_template("/admin/inventories.html")
+
+
+@app.route('/stock', methods=['GET', 'POST'])
+def stock():
+    return render_template("/admin/stock.html")
+
+
+@app.route('/sales', methods=['GET', 'POST'])
+def sales():
+    return render_template("/admin/sales.html")
+
+
+@app.route('/users', methods=['GET', 'POST'])
+def users():
+    return render_template("/admin/users.html")
 
 
 if __name__ =="__main__":
     app.jinja_env.auto_reload = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.run(debug = True)
+
+

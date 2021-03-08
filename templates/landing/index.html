@@ -1,4 +1,4 @@
-{% extends 'base.html'%}
+{% extends 'base2.html'%}
 
 {% block pagetitle%}Home - Inventory Management system{% endblock %}
 
@@ -7,17 +7,24 @@
 <link rel= "stylesheet" href="{{ url_for('static', filename='style.css') }}">
 {%endblock%}
 
-{% include '/includes/navbar.html' %}
-<div class="container">
+
     {% block content%} 
-<div class="grid">
-    <h1>Home page</h1>
+    <div class="container">
+      <div class="row mt-2 ms-4">
 
+        <div class="col">
+          <h4>Manage Your Inventory, Stock and Sales</h4>
+            <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas saepe laborum et quis sint quos aperiam ea consectetur repellendus sapiente at perferendis, autem in nihil tenetur tempora tempore adipisci. Recusandae?</P>
+      </div>
 
+      <div class="col">
+        <img src="/static/images/lukas-blazek-mcSDtbWXUZU-unsplash640x424.jpg">
+      </div>
+
+      </div>
+      
 </div>
-
 {% endblock%}
-  </div>
-
+  
 
 {% block jslinks%} {% endblock %}
