@@ -20,19 +20,17 @@
     {% include '/includes/navbar.html'%}
 
 
-        <div class="container"> <!--Container Start-->
-            <div class="row">
-                <div class="col-3 mt-4">
-                    {% include '/includes/sidenav.html'%}
+        <div class="container"> <!--First Container Start-->
+            <div class="row"> <!--Start of first container Row-->
+                <div class="col mt-4">
+    
+                    {% block content%} {% endblock%}
                 </div>
 
-                <div class="col-9 mt-4"> <!--Start Col2-->
-                    {% block content%} {% endblock%}
-                </div> <!--End Col 2-->
-            </div> <!--End Row-->
+            </div> <!--End of first container Row-->
 
             
-        </div> <!--Container End-->
+        </div> <!--First Container End-->
         
     
     

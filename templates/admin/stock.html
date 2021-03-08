@@ -1,0 +1,104 @@
+{% extends 'base.html'%}
+
+{% block pagetitle%}Home - Inventory Management system{% endblock %}
+
+{% block csslinks%}
+<link rel="stylesheet" href="/static/main.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+{%endblock%}
+
+
+{% block content%} 
+<div class="container"> <!--Container Start-->
+  <div class="row"> <!--Row Start-->
+      <div class="col-9"> <!--First Col Start-->
+          <div class="col mt-4">
+            <!-- Table -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        
+
+        </div>
+      </div> <!--First Col End-->
+
+  </div> <!--Row End-->
+</div> <!--Container End-->
+
+
+
+
+{% endblock%}
+
+
+
+{% block jslinks%}
+<script>// Bar chart
+  new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+          data: [2478, 5267, 734, 784, 433]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+  });</script>
+
+<script>new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+        data: [2478, 5267, 734, 784, 433]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+  });</script>
+{% endblock %}

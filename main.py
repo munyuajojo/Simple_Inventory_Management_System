@@ -22,6 +22,11 @@ from models.sales import Sales
 #Services
 from services.inventory import InventoryService
 
+#Error Handling
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template("/errors/404.html"), 404
+
 @app.before_first_request
 def create():
    db.create_all()
@@ -32,17 +37,19 @@ def create():
 def index():
     return render_template("/landing/index.html")
 
-@app.route('/dashboard', methods=['GET', 'POST'])
-def dashboard():
+@app.route('/inventories', methods=['GET', 'POST'])
+def inventories():
     if request.method == 'POST':
         InventoryService.add_inventory()
         
     return InventoryService.inventories()
+    render_template("/admin/inventories.html")
 
 
-@app.route('/inventories', methods=['GET', 'POST'])
-def inventories():
-    return render_template("/admin/inventories.html")
+@app.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    return render_template("/admin/dashboard.html")
+
 
 
 @app.route('/stock', methods=['GET', 'POST'])
@@ -59,6 +66,9 @@ def sales():
 def users():
     return render_template("/admin/users.html")
 
+#@app.errorhandler(404)
+#def page_not_found(error):
+    #return render_template("/errors/404.html"), 404
 
 if __name__ =="__main__":
     app.jinja_env.auto_reload = True

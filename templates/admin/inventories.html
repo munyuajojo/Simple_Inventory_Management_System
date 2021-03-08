@@ -1,0 +1,164 @@
+{% extends 'base.html'%}
+
+{% block pagetitle%}Home - Inventory Management system{% endblock %}
+
+{% block csslinks%}
+<link rel="stylesheet" href="/static/main.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+{%endblock%}
+
+
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+                <div class="row">
+                  <div class="col d-flex justify-content-center">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-md btn-warning" data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop">
+                      Add Inventory
+                    </button>
+  
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered ">
+                        <div class="modal-content ">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="{{url_for('inventories')}}" method="POST"> <!--Start of form-->
+                              <div class="form-floating mb-3"> <!--Start of Email input-->
+                                <input type="text" class="form-control" id="floatingInput" name="name">
+                                <label for="floatingInput">Name</label>
+                              </div><!--End of Email input-->
+                              
+                              <div class="form-group mt-3"> <!--Start of select category-->
+                                    <label for="">Select Category</label>
+                                    <select name="category" id="" required class="form-control">
+                                      <option></option>
+                                      <option selected>Select Category</option>
+                                      <option value="product">Product</option>
+                                      <option value="service">Service</option>
+                                    </select> <!--End of Select Category-->
+                              </div><!--End of Select Category-->
+      
+                              <div class="form-group mt-3"> <!--Start of Buying Price form group-->
+                                <label for="">Buying Price</label>
+                                <input class="form control" type="text" name="bp" id="" required>
+                              </div> <!--End of Buying Price form group-->
+                                    
+                              <div class="form-group mt-3"> <!--Start of Selling Price form group-->
+                                <label for="">Selling Price</label>
+                                <input class="form control" type="text" name="sp" id="" required>
+                              </div> <!--End of Selling Price form group-->
+      
+                              <div class="from-group mt-3 d-flex justify-content-end"> <!--Start of Buttom form group-->
+                                <button class="btn btn-success" type="submit">Submit</button>
+                              </div> <!--End of Buttom form group-->   
+      
+                            </form> <!--End of form-->
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+  
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col mt-4">
+                    <!-- Table -->
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th> 
+                          <th scope="col">INV_ID</th>
+                          <th scope="col">NAME</th>
+                          <th scope="col">TYPE</th>
+                          <th scope="col">BP</th>
+                          <th scope="col">SP</th>
+                          <th scope="col">CREATED AT</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for inv in inventories %}
+                        <tr>
+                          <th scope="row">1</th>
+                          <td> {{ inv.id }} </td>
+                          <td> {{ inv.name }} </td>
+                          <td> {{ inv.itype }} </td>
+                          <td> {{ inv.bp }} </td>
+                          <td> {{ inv.sp }} </td>
+                          <td> {{ inv.created_at.strftime("%d/%m/%Y, %H:%M:%S") }} </td>
+                          {% endfor %}
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+  
+                  </div>
+                
+  
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock%}
+</div>
+
+
+{% block jslinks%}
+<script>// Bar chart
+  new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+          data: [2478, 5267, 734, 784, 433]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+  });</script>
+
+<script>new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+        data: [2478, 5267, 734, 784, 433]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+  });</script>
+{% endblock %}
