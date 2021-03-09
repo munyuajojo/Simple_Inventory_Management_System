@@ -30,7 +30,22 @@ def page_not_found(error):
 @app.before_first_request
 def create():
    db.create_all()
-    
+
+
+@app.context_processor
+def utility_processor():
+    def compute_quantity(inventoryID: int):
+        #Find an inventory that matches the ID
+        inv= Inventory.get_inventory_byID(id=inventoryID)
+        if inv is not None:
+            #Get the Stock Quantity
+            total_stock = list(map(lambda obj:obj.quantity, inv.stock))
+            total_sales = list(map(lambda obj:obj.quantity, inv.sales))
+
+            return sum(total_stock) - sum(total_sales)
+
+    return dict(compute_quantity=compute_quantity)
+
 
 @app.route('/')
 def index():

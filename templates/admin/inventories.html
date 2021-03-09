@@ -85,7 +85,7 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th scope="col" >#</th> 
+                          
                           <th scope="col">INV_ID</th>
                           <th scope="col">Name</th>
                           <th scope="col">Type</th>
@@ -103,17 +103,28 @@
                       <tbody>
                         {% for inv in inventories %}
                         <tr>
-                          <th scope="row">1</th>
+                          
                           <td> {{ inv.id }} </td>
                           <td> {{ inv.name }} </td>
                           <td> {{ inv.itype }} </td>
-                          <td>  </td>
+
+                          {% if compute_quantity(inv.id) >= 10 %}
+                          <td style="font-size: 15px; font-weight:bold"class="text-success text-monospace "> {{compute_quantity(inv.id)}} </td>
+                          {% else %}
+                          <td style="font-size: 15px; font-weight:bold"class="text-danger  text-monospace"> {{compute_quantity(inv.id)}} </td>
+                          {% endif %}
+
                           <td> {{ inv.bp }} </td>
                           <td> {{ inv.sp }} </td>
                           <td> {{ inv.created_at.strftime("%d/%m/%Y") }} </td>
                           
                           <td>
+                            {% if compute_quantity(inv.id) <=5 %}
+                          <button disabled type="button" class= "btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#makesale{{ inv.id }} " ><i class="fas fa-coins"></i></button>
+                          {% else %}
                           <button type="button" class= "btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#makesale{{ inv.id }} " ><i class="fas fa-coins"></i></button>
+
+                          {% endif %}
                           </td>
 
                             <!--Make Sale Modal-->
@@ -156,8 +167,18 @@
   </div>
 </div> <!--End of Make Sale Modal-->
 
+
+
                           <td>
+                            {% if compute_quantity(inv.id) >= 10 %}
+
+                            <button disabled type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#restock{{ inv.id }} " ><i class="fas fa-plus"></i></button>
+
+                            {% else%}
+
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#restock{{ inv.id }} " ><i class="fas fa-plus"></i></button>
+
+                            {% endif%}
                             </td>
                                   <!--Start of Restock Modal-->
                             
