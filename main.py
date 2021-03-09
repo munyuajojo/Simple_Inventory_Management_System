@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 #from sqlalchemy import create_engine
 
@@ -31,7 +31,6 @@ def page_not_found(error):
 def create():
    db.create_all()
     
-
 
 @app.route('/')
 def index():
@@ -66,9 +65,47 @@ def sales():
 def users():
     return render_template("/admin/users.html")
 
-#@app.errorhandler(404)
-#def page_not_found(error):
-    #return render_template("/errors/404.html"), 404
+
+@app.route("/inventories/<int:inv_id>/restock", methods=['POST'])
+def restock(inv_id):
+    if request.method == 'POST':
+        qty = request.form['qty']
+        r = Stock(quantity=qty, inventoryId=inv_id)
+        r.create_record()
+        flash('New stock successfully added!', 'success')
+
+    return redirect(url_for('inventories'))
+
+
+@app.route("/inventories/<int:inv_id>/makesale", methods=['POST'])
+def makesale(inv_id):
+    if request.method == 'POST':
+        qty = request.form['qty']
+        s = Sales(quantity=qty, inventoryId=inv_id)
+        s.create_record()
+        flash('A new sale was successfully made!', 'success')
+
+    return redirect(url_for('inventories'))
+
+
+@app.route("/inventories/<int:inv_id>/edit", methods=['POST'])
+def edit_inventory(inv_id):
+    if request.method == 'POST':
+        name = request.form['name']
+        itype = request.form['category']
+        bp = request.form['bp']
+        sp = request.form['sp']
+
+        u = Inventory.edit_inventory(
+            inv_id=inv_id,
+            name=name,
+            itype=itype,
+            bp=bp,
+            sp=sp
+        )
+        flash('Inventory record successfully updated!', 'success')
+
+    return redirect(url_for('inventories'))
 
 if __name__ =="__main__":
     app.jinja_env.auto_reload = True

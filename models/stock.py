@@ -10,3 +10,11 @@ class Stock(db.Model):
 
 
 
+    # Create
+    def create_record(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
+
+
+

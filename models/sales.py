@@ -7,3 +7,11 @@ class Sales(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), default=func.now())
     inventoryId = db.Column(db.Integer, db.ForeignKey('inventories.id'), nullable=False)
+
+
+
+    # Create
+    def create_record(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
