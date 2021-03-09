@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 
 #Models
 from models.inventory import Inventory
@@ -21,11 +21,11 @@ class InventoryService:
             itype = request.form['category']
             bp = request.form['bp']
             sp = request.form['sp']
-
+        
 
             #Check if the Inventory name exist
             if Inventory.check_inventory_exists(inventory_name=name):
-                print("The inventory already exists")
+                flash('Inventory name already exists!', 'danger')
                 return redirect(url_for('inventories'))
             else:
                 record = Inventory(
@@ -35,7 +35,7 @@ class InventoryService:
                     sp=sp
                 )
                 record.create_record()
-                print("success!")
+                flash('Inventory successfully added!', 'success')
                 return redirect(url_for('inventories'))
 
             
