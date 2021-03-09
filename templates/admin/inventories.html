@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
-
-{% block pagetitle%}Home - Inventory Management system{% endblock %}
+<!--pagetitle Block Start-->
+{% block pagetitle%} Inventories {% endblock %} 
+<!--pagetitle Block End-->
 
 {% block csslinks%}
 <link rel="stylesheet" href="/static/main.css">
@@ -103,8 +104,7 @@
                       <tbody>
                         {% for inv in inventories %}
                         <tr>
-                          
-                          <td> {{ inv.id }} </td>
+                          <th scope="row">{{ inv.id }}</th>
                           <td> {{ inv.name }} </td>
                           <td> {{ inv.itype }} </td>
 

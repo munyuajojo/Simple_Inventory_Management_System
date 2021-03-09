@@ -1,8 +1,8 @@
 {% extends 'base.html'%} <!--Extending the base.html Layout-->
 
-{% block pagetitle%} <!--pagetitle Block Start-->
-Home - Inventory Management system
-{% endblock %} <!--pagetitle Block End-->
+<!--pagetitle Block Start-->
+{% block pagetitle%}  Sales {% endblock %} 
+<!--pagetitle Block End-->
 
 {% block csslinks%} <!--Csslinks Block Start-->
 <link rel="stylesheet" href="/static/main.css">
@@ -17,35 +17,28 @@ Home - Inventory Management system
         <div class="col-9"> <!--First Col Start-->
             <div class="col mt-4">
               <!-- Table -->
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
+            <table class="table">
+              <thead>
+                <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Inventory</th>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Entry Date</th>
+                          
+                </tr>
+              </thead>
+              <tbody>
+                {% for sales in all_sales %}
+                <tr>
+                  <th scope="row"> {{sales.id}} </th>
+                  <td> {{sales.inventories.name }} </td>
+                  <td> {{sales.quantity}} </td>
+                  <td> {{sales.created_at.strftime("%d/%m/%Y")}} </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
 
             </div>
           

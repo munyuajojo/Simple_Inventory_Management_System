@@ -17,4 +17,8 @@ class Stock(db.Model):
         return self
 
 
+    @classmethod
+    def fetch_all(cls):
+        return cls.query.all()
+
 

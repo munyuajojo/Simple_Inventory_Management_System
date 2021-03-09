@@ -1,6 +1,8 @@
 {% extends 'base.html'%}
 
-{% block pagetitle%}Home - Inventory Management system{% endblock %}
+<!--pagetitle Block Start-->
+{% block pagetitle%}  Stock {% endblock %} 
+<!--pagetitle Block End-->
 
 {% block csslinks%}
 <link rel="stylesheet" href="/static/main.css">
@@ -18,30 +20,22 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
+                          <th scope="col">#</th>
+                          <th scope="col">Inventory</th>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Entry Date</th>
+                          
                 </tr>
               </thead>
               <tbody>
+                {% for stock in all_stock %}
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                  <th scope="row"> {{stock.id}} </th>
+                  <td> {{stock.inventories.name }} </td>
+                  <td> {{stock.quantity}} </td>
+                  <td> {{stock.created_at.strftime("%d/%m/%Y")}} </td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td colspan="2">Larry the Bird</td>
-                  <td>@twitter</td>
-                </tr>
+                {% endfor %}
               </tbody>
             </table>
 

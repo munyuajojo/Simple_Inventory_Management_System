@@ -62,18 +62,21 @@ def inventories():
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
-    return render_template("/admin/dashboard.html")
+    total_inventories = len(Inventory.fetch_all())
+    return render_template("/admin/dashboard.html", total_inventories=total_inventories)
 
 
 
-@app.route('/stock', methods=['GET', 'POST'])
+@app.route('/stock')
 def stock():
-    return render_template("/admin/stock.html")
+    all_stock=Stock.fetch_all()
+    return render_template("/admin/stock.html", all_stock=all_stock)
 
 
-@app.route('/sales', methods=['GET', 'POST'])
+@app.route('/sales')
 def sales():
-    return render_template("/admin/sales.html")
+    all_sales=Sales.fetch_all()
+    return render_template("/admin/sales.html", all_sales=all_sales)
 
 
 @app.route('/users', methods=['GET', 'POST'])
