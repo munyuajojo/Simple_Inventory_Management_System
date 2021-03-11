@@ -1,11 +1,11 @@
-import os
+import os, secrets
 
 
 
 class Config(object):
     FLASK_APP = os.environ.get('FLASK_APP')
     SQLALCHEMY_TRACK_MODIFICATIONS = True
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = secrets.token_hex(8)
 
 class Development(Config):
     FLASK_ENV= 'Development'
