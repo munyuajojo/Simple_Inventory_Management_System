@@ -11,7 +11,7 @@ from configs.configurations import Development, Testing, Production
 app = Flask(__name__)
 app.config.from_object(Development)
 db = SQLAlchemy(app)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:jojo@localhost/inventories"
+#app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:jojo@localhost/inventories"
 
 
 #Models
