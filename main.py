@@ -125,10 +125,10 @@ def edit_inventory(inv_id):
         flash('Inventory record successfully updated!', 'success')
 
     return redirect(url_for('inventories'))
-
+"""
 if __name__ =="__main__":
     app.jinja_env.auto_reload = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True
-    app.run(debug = True)
+    app.run(debug = True)"""
 
 
