@@ -38,5 +38,7 @@ class InventoryService:
                 flash('Inventory successfully added!', 'success')
                 return redirect(url_for('inventories'))
 
+    
+
             
         

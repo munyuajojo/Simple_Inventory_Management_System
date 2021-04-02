@@ -12,13 +12,13 @@ class Inventory(db.Model):
 
     stock = db.relationship('Stock', backref='inventories', lazy=True)
     sales = db.relationship('Sales', backref='inventories', lazy=True)
-
-
+    
 # Create
     def create_record(self):
         db.session.add(self)
         db.session.commit()
         return self
+
 
 # Get Inventories
     @classmethod
@@ -53,7 +53,24 @@ class Inventory(db.Model):
             return record
         return record
 
+@classmethod
+def delete_inventory(cls, inv_id):
+    get_inventory= request.form.get(id)
+    get_inventoryId= request.form.get(inv_id=inventoryId)
+    inventory = Inventory.query.filter_by(id=inv_id, inv_id=inventoryId).first()
+    if request.method == 'POST':
+        if inventory:
+            db.session.delete(inventory)
+            db.session.commit()
+            flash('Inventory successfully Deleted!', 'danger')
+
+        
+    return redirect(url_for('inventories'))
 
 
+
+ 
+
+    
 
     

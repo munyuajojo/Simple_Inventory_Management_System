@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import IntegrityError
 #from sqlalchemy import create_engine
 
 #e = create_engine("postgresql://postgres:jojo@localhost/inventories", pool_recycle=3600)
@@ -125,6 +126,17 @@ def edit_inventory(inv_id):
         flash('Inventory record successfully updated!', 'success')
 
     return redirect(url_for('inventories'))
+
+#Delete a record
+@app.route("/inventories/<int:inv_id>/delete", methods=['GET', 'POST'])
+def delete_inventory(inv_id):
+    db.session.delete(inventory)
+    db.session.commit()
+    flash('Inventory successfully Deleted!', 'success')
+            
+    return redirect(url_for('inventories'))
+
+
 """
 if __name__ =="__main__":
     app.jinja_env.auto_reload = True
